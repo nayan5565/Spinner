@@ -19,28 +19,39 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
 
         // Spinner element
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinnerTeam = (Spinner) findViewById(R.id.spinnerTeam);
+        Spinner spinnerPlayers = (Spinner) findViewById(R.id.spinnerPlayer);
 
         // Spinner click listener
-        spinner.setOnItemSelectedListener(this);
+        spinnerTeam.setOnItemSelectedListener(this);
+        spinnerPlayers.setOnItemSelectedListener(this);
 
         // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("Automobile");
-        categories.add("Business Services");
-        categories.add("Computers");
-        categories.add("Education");
-        categories.add("Personal");
-        categories.add("Travel");
+        List<String> teams = new ArrayList<String>();
+        teams.add("Australia");
+        teams.add("Bangladesh");
+        teams.add("England");
+        teams.add("Pakistan");
+        teams.add("India");
+        teams.add("Srilanka");
+        List<String> players = new ArrayList<String>();
+        players.add("Tamim");
+        players.add("Mashrafi");
+        players.add("Shakib");
+        players.add("Musfiq");
+        players.add("Mustafiz");
+        players.add("Sabbir");
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, teams);
+        ArrayAdapter<String> dataAdapterPlayer = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, players);
 
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        dataAdapterPlayer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
+        spinnerTeam.setAdapter(dataAdapter);
+        spinnerPlayers.setAdapter(dataAdapterPlayer);
     }
 
     @Override
