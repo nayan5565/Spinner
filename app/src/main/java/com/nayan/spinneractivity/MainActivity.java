@@ -1,11 +1,14 @@
 package com.nayan.spinneractivity;
 
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nayan.spinneractivity.adapter.BaseAdapterTeam;
@@ -16,7 +19,7 @@ import com.nayan.spinneractivity.model.MTeam;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
     private MPlayer mPlayer;
     private MTeam mTeam;
     private ArrayList<MPlayer> playerArrayList;
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Spinner spinnerPlayers;
     private TeamAdapter teamAdapter;
     private BaseAdapterTeam baseAdapterTeam;
+    TextView output;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,21 +71,39 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void preparedisplay() {
-//        teamAdapter = new TeamAdapter(MainActivity.this,
-//                R.layout.team_row, teamArrayList);
+        Resources res = getResources();
+        teamAdapter = new TeamAdapter(MainActivity.this,
+                R.layout.team_row, teamArrayList, res);
 //        teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        baseAdapterTeam=new BaseAdapterTeam(getApplicationContext(),teamArrayList);
+//        baseAdapterTeam=new BaseAdapterTeam(getApplicationContext(),teamArrayList);
 
-        spinnerTeam.setAdapter(baseAdapterTeam);
+
+        spinnerTeam.setAdapter(teamAdapter);
+        spinnerTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String team = ((TextView) view.findViewById(R.id.TxtTeam)).getText().toString();
+                String OutputMsg = "Selected Company : \n\n" + team;
+                output.setText(OutputMsg);
+                Log.e("adapter"," name "+team);
+                Log.e("adapter"," pos "+position);
+                Toast.makeText(getApplicationContext(), OutputMsg, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+//        spinnerTeam.setAdapter(baseAdapterTeam);
     }
 
     private void init() {
+        output = (TextView) findViewById(R.id.output);
         spinnerTeam = (Spinner) findViewById(R.id.spinnerTeam);
         spinnerPlayers = (Spinner) findViewById(R.id.spinnerPlayer);
 
         // Spinner click listener
-        spinnerTeam.setOnItemSelectedListener(this);
-        spinnerPlayers.setOnItemSelectedListener(this);
 
     }
 
@@ -169,18 +191,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//        Toast.makeText(getApplicationContext(), teamArrayList.get(position), Toast.LENGTH_LONG).show();
-//        // On selecting a spinner item
-//        String item = parent.getItemAtPosition(position).toString();
-//
-//        // Showing selected spinner item
-//        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-    }
 
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-    }
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+////        Toast.makeText(getApplicationContext(), teamArrayList.get(position), Toast.LENGTH_LONG).show();
+////        // On selecting a spinner item
+////        String item = parent.getItemAtPosition(position).toString();
+////
+////        // Showing selected spinner item
+////        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+//    }
+//
+//    public void onNothingSelected(AdapterView<?> arg0) {
+//        // TODO Auto-generated method stub
+//    }
 }
 

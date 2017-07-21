@@ -2,6 +2,7 @@ package com.nayan.spinneractivity.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class BaseAdapterTeam extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         mTeam = teamArrayList.get(i);
         view = inflter.inflate(R.layout.team_row, null);
 //        ImageView icon = (ImageView) view.findViewById(R.id.imageView);
@@ -60,6 +61,8 @@ public class BaseAdapterTeam extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "" + mTeam.getTeam(), Toast.LENGTH_SHORT).show();
+                Log.e("adapter"," name "+mTeam.getTeam());
+                Log.e("adapter"," pos "+i);
             }
         });
 //        icon.setImageResource(flags[i]);
