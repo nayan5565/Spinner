@@ -23,18 +23,20 @@ public class TeamAdapter extends ArrayAdapter<MTeam> {
     public Resources res;
     MTeam mTeam;
     LayoutInflater inflater;
+    int rowLayout;
 
     /*************
      * CustomAdapter Constructor
      *****************/
-    public TeamAdapter(Activity activitySpinner, int textViewResourceId, ArrayList<MTeam> objects, Resources resLocal) {
-        super(activitySpinner, textViewResourceId, objects);
+    public TeamAdapter(Activity activitySpinner, int rowLayout, ArrayList<MTeam> objects, Resources resLocal) {
+        super(activitySpinner, rowLayout, objects);
 
         /********** Take passed values **********/
         activity = activitySpinner;
         teamArrayList = objects;
         res = resLocal;
-        mTeam=new MTeam();
+        this.rowLayout = rowLayout;
+        mTeam = new MTeam();
 
         /***********  Layout inflator to call external xml layout () **********************/
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -55,7 +57,7 @@ public class TeamAdapter extends ArrayAdapter<MTeam> {
     public View getCustomView(int position, View convertView, ViewGroup parent) {
 
         /********** Inflate spinner_rows.xml file for each row ( Defined below ) ************/
-        View row = inflater.inflate(R.layout.team_row, parent, false);
+        View row = inflater.inflate(rowLayout, parent, false);
 
         /***** Get each Model object from Arraylist ********/
 
