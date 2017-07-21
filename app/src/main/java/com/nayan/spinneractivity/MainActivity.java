@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void preparedisplay() {
-        Resources res = getResources();
+//        Resources res = getResources();
         teamAdapter = new TeamAdapter(MainActivity.this,
-                R.layout.team_row, teamArrayList, res);
+                R.layout.team_row, teamArrayList);
 //        teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        baseAdapterTeam=new BaseAdapterTeam(getApplicationContext(),teamArrayList);
 

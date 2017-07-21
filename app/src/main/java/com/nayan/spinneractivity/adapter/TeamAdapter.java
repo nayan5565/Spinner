@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class TeamAdapter extends ArrayAdapter<MTeam> {
     private Activity activity;
     private ArrayList<MTeam> teamArrayList;
-    public Resources res;
+//    public Resources res;
     MTeam mTeam;
     LayoutInflater inflater;
     int rowLayout;
@@ -28,13 +28,13 @@ public class TeamAdapter extends ArrayAdapter<MTeam> {
     /*************
      * CustomAdapter Constructor
      *****************/
-    public TeamAdapter(Activity activitySpinner, int rowLayout, ArrayList<MTeam> objects, Resources resLocal) {
+    public TeamAdapter(Activity activitySpinner, int rowLayout, ArrayList<MTeam> objects) {
         super(activitySpinner, rowLayout, objects);
 
         /********** Take passed values **********/
         activity = activitySpinner;
         teamArrayList = objects;
-        res = resLocal;
+//        res = resLocal;
         this.rowLayout = rowLayout;
         mTeam = new MTeam();
 
