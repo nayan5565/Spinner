@@ -1,34 +1,37 @@
 package com.nayan.spinneractivity;
 
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nayan.spinneractivity.adapter.BaseAdapterTeam;
+import com.nayan.spinneractivity.adapter.PlayerAdapter;
 import com.nayan.spinneractivity.adapter.TeamAdapter;
 import com.nayan.spinneractivity.model.MPlayer;
 import com.nayan.spinneractivity.model.MTeam;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private MPlayer mPlayer;
     private MTeam mTeam;
     private ArrayList<MPlayer> playerArrayList;
-    private ArrayList<MTeam> teamArrayList;
+    public ArrayList<MTeam> teamArrayList;
     private Spinner spinnerTeam;
     private Spinner spinnerPlayers;
     private TeamAdapter teamAdapter;
-    private BaseAdapterTeam baseAdapterTeam;
+    private PlayerAdapter playerAdapter;
+    private static MainActivity instance;
+    public int pos;
     TextView output;
+
+    public static MainActivity getInstance() {
+        return instance;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         generate();
-        preparedisplay();
+        teamDisplay();
+//        playerDisplay();
 
         // Spinner element
 
@@ -70,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
 //        spinnerPlayers.setAdapter(dataAdapterPlayer);
     }
 
-    private void preparedisplay() {
+    private void teamDisplay() {
 //        Resources res = getResources();
         teamAdapter = new TeamAdapter(MainActivity.this,
                 R.layout.team_row, teamArrayList);
 //        teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        baseAdapterTeam=new BaseAdapterTeam(getApplicationContext(),teamArrayList);
+//        baseAdapterTeam=new PlayerAdapter(getApplicationContext(),teamArrayList);
 
 
         spinnerTeam.setAdapter(teamAdapter);
@@ -85,9 +89,19 @@ public class MainActivity extends AppCompatActivity {
                 String team = ((TextView) view.findViewById(R.id.TxtTeam)).getText().toString();
                 String OutputMsg = "Selected Company : \n\n" + team;
                 output.setText(OutputMsg);
-                Log.e("adapter"," name "+team);
-                Log.e("adapter"," pos "+position);
+                pos = position;
+                Log.e("adapter", " name " + team);
+                Log.e("adapter", " pos " + pos);
                 Toast.makeText(getApplicationContext(), OutputMsg, Toast.LENGTH_LONG).show();
+//                if (pos == 0) {
+//                    playerArrayList = teamArrayList.get(0).getPlayerArrayList();
+//                } else if (pos == 1) {
+//                    playerArrayList = teamArrayList.get(1).getPlayerArrayList();
+//                } else if (pos == 2) {
+//                    playerArrayList = teamArrayList.get(2).getPlayerArrayList();
+//                }
+                playerAdapter = new PlayerAdapter(MainActivity.this, R.layout.team_row, teamArrayList.get(pos).getPlayerArrayList());
+                spinnerPlayers.setAdapter(playerAdapter);
             }
 
             @Override
@@ -98,7 +112,14 @@ public class MainActivity extends AppCompatActivity {
 //        spinnerTeam.setAdapter(baseAdapterTeam);
     }
 
+    private void playerDisplay() {
+//        Log.e("adapter", " pos 2 " + pos);
+
+
+    }
+
     private void init() {
+        instance = this;
         output = (TextView) findViewById(R.id.output);
         spinnerTeam = (Spinner) findViewById(R.id.spinnerTeam);
         spinnerPlayers = (Spinner) findViewById(R.id.spinnerPlayer);
