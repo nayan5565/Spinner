@@ -155,12 +155,16 @@ public class MainActivity extends AppCompatActivity {
         mPlayer = new MPlayer();
         mPlayer.setName("Maxwell");
         playerArrayList.add(mPlayer);
+
+
         mTeam.setPlayerArrayList(playerArrayList);
         teamArrayList.add(mTeam);
 
         mTeam = new MTeam();
         mTeam.setId(2);
         mTeam.setTeam("Bangladesh");
+
+        playerArrayList=new ArrayList<>();
 
         mPlayer = new MPlayer();
         mPlayer.setName("Tamim");
@@ -187,6 +191,8 @@ public class MainActivity extends AppCompatActivity {
         mTeam = new MTeam();
         mTeam.setId(3);
         mTeam.setTeam("India");
+
+        playerArrayList=new ArrayList<>();
 
         mPlayer = new MPlayer();
         mPlayer.setName("Kohli");
