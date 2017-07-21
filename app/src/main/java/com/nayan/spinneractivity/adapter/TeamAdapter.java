@@ -1,10 +1,12 @@
 package com.nayan.spinneractivity.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,62 +14,31 @@ import com.nayan.spinneractivity.R;
 import com.nayan.spinneractivity.model.MTeam;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nayan on 7/21/2017.
  */
-public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.MyViewHolder> {
-    private Context context;
-    private LayoutInflater inflater;
-    private ArrayList<MTeam> teamArrayList;
-    private MTeam mTeam;
-    private View view;
+public class TeamAdapter extends ArrayAdapter<MTeam> {
+    LayoutInflater flater;
 
+    public TeamAdapter(Activity context, int resouceId,  ArrayList<MTeam> list) {
 
-    public TeamAdapter(Context context) {
-        this.context = context;
-        teamArrayList = new ArrayList<>();
-        inflater = LayoutInflater.from(context);
-    }
-
-    public void setData(ArrayList<MTeam> teamArrayList) {
-        this.teamArrayList = teamArrayList;
-        notifyDataSetChanged();
+        super(context, resouceId, list);
+        flater = context.getLayoutInflater();
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        view = inflater.inflate(R.layout.team_row, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
-        return myViewHolder;
-    }
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        mTeam = teamArrayList.get(position);
-        holder.textView.setText(mTeam.getTeam());
+        MTeam rowItem = getItem(position);
 
-    }
+        View rowview = flater.inflate(R.layout.team_row, null, true);
 
-    @Override
-    public int getItemCount() {
-        return teamArrayList.size();
-    }
+        TextView txtTeam = (TextView) rowview.findViewById(R.id.TxtTeam);
+        txtTeam.setText(rowItem.getTeam());
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
 
-        public MyViewHolder(final View itemView) {
-            super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.TxtTeam);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mTeam = teamArrayList.get(getAdapterPosition());
-
-                }
-            });
-
-        }
+        return rowview;
     }
 }

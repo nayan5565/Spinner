@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.nayan.spinneractivity.adapter.BaseAdapterTeam;
 import com.nayan.spinneractivity.adapter.TeamAdapter;
 import com.nayan.spinneractivity.model.MPlayer;
 import com.nayan.spinneractivity.model.MTeam;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Spinner spinnerTeam;
     private Spinner spinnerPlayers;
     private TeamAdapter teamAdapter;
+    private BaseAdapterTeam baseAdapterTeam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +62,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        dataAdapterPlayer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // attaching data adapter to spinner
-        spinnerTeam.setAdapter(dataAdapter);
-        spinnerPlayers.setAdapter(dataAdapterPlayer);
+//        spinnerTeam.setAdapter(dataAdapter);
+//        spinnerPlayers.setAdapter(dataAdapterPlayer);
     }
 
     private void preparedisplay() {
-        teamAdapter.setData(teamArrayList);
-        spinnerTeam.setAdapter(teamAdapter);
+//        teamAdapter = new TeamAdapter(MainActivity.this,
+//                R.layout.team_row, teamArrayList);
+//        teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        baseAdapterTeam=new BaseAdapterTeam(getApplicationContext(),teamArrayList);
+
+        spinnerTeam.setAdapter(baseAdapterTeam);
     }
 
     private void init() {
@@ -77,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinnerTeam.setOnItemSelectedListener(this);
         spinnerPlayers.setOnItemSelectedListener(this);
 
-        teamAdapter = new TeamAdapter(this);
     }
 
     private void generate() {
@@ -166,11 +171,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), teamArrayList.get(position), Toast.LENGTH_LONG).show();
+//        // On selecting a spinner item
+//        String item = parent.getItemAtPosition(position).toString();
+//
+//        // Showing selected spinner item
+//        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {
