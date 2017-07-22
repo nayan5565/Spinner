@@ -2,21 +2,13 @@ package com.nayan.spinneractivity.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.nayan.spinneractivity.R;
 import com.nayan.spinneractivity.model.MPlayer;
-import com.nayan.spinneractivity.model.MTeam;
-
 import java.util.ArrayList;
 
 /**

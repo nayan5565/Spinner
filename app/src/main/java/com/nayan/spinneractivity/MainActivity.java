@@ -41,47 +41,11 @@ public class MainActivity extends AppCompatActivity {
         init();
         generate();
         teamDisplay();
-//        playerDisplay();
-
-        // Spinner element
-
-
-//        // Spinner Drop down elements
-//        List<String> teams = new ArrayList<String>();
-//        teams.add("Australia");
-//        teams.add("Bangladesh");
-//        teams.add("England");
-//        teams.add("Pakistan");
-//        teams.add("India");
-//        teams.add("Srilanka");
-//        List<String> players = new ArrayList<String>();
-//        players.add("Tamim");
-//        players.add("Mashrafi");
-//        players.add("Shakib");
-//        players.add("Musfiq");
-//        players.add("Mustafiz");
-//        players.add("Sabbir");
-//
-//        // Creating adapter for spinner
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, teams);
-//        ArrayAdapter<String> dataAdapterPlayer = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, players);
-//
-//        // Drop down layout style - list view with radio button
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        dataAdapterPlayer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // attaching data adapter to spinner
-//        spinnerTeam.setAdapter(dataAdapter);
-//        spinnerPlayers.setAdapter(dataAdapterPlayer);
     }
 
     private void teamDisplay() {
 //        Resources res = getResources();
-        teamAdapter = new TeamAdapter(MainActivity.this,
-                R.layout.team_row, teamArrayList);
-//        teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        baseAdapterTeam=new PlayerAdapter(getApplicationContext(),teamArrayList);
-
-
+        teamAdapter = new TeamAdapter(MainActivity.this,R.layout.team_row, teamArrayList);
         spinnerTeam.setAdapter(teamAdapter);
         spinnerTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -210,19 +174,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-//    @Override
-//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-////        Toast.makeText(getApplicationContext(), teamArrayList.get(position), Toast.LENGTH_LONG).show();
-////        // On selecting a spinner item
-////        String item = parent.getItemAtPosition(position).toString();
-////
-////        // Showing selected spinner item
-////        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-//    }
-//
-//    public void onNothingSelected(AdapterView<?> arg0) {
-//        // TODO Auto-generated method stub
-//    }
 }
 
