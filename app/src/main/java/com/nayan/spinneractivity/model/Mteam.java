@@ -8,6 +8,16 @@ import java.util.ArrayList;
 public class MTeam {
     private int id;
     private String team;
+    private int rank;
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
     private ArrayList<MPlayer> playerArrayList;
 
     public ArrayList<MPlayer> getPlayerArrayList() {

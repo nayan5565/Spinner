@@ -87,19 +87,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String team = ((TextView) view.findViewById(R.id.TxtTeam)).getText().toString();
-                String OutputMsg = "Selected Company : \n\n" + team;
+                String rank = ((TextView) view.findViewById(R.id.txtRank)).getText().toString();
+                String OutputMsg = "Selected Company : \n\n" + team + "\n\n Rank :" + rank;
                 output.setText(OutputMsg);
                 pos = position;
                 Log.e("adapter", " name " + team);
                 Log.e("adapter", " pos " + pos);
                 Toast.makeText(getApplicationContext(), OutputMsg, Toast.LENGTH_LONG).show();
-//                if (pos == 0) {
-//                    playerArrayList = teamArrayList.get(0).getPlayerArrayList();
-//                } else if (pos == 1) {
-//                    playerArrayList = teamArrayList.get(1).getPlayerArrayList();
-//                } else if (pos == 2) {
-//                    playerArrayList = teamArrayList.get(2).getPlayerArrayList();
-//                }
+
                 playerAdapter = new PlayerAdapter(MainActivity.this, R.layout.team_row, teamArrayList.get(pos).getPlayerArrayList());
                 spinnerPlayers.setAdapter(playerAdapter);
             }
@@ -109,14 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-//        spinnerTeam.setAdapter(baseAdapterTeam);
     }
 
-    private void playerDisplay() {
-//        Log.e("adapter", " pos 2 " + pos);
-
-
-    }
 
     private void init() {
         instance = this;
@@ -135,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         mTeam = new MTeam();
         mTeam.setId(1);
         mTeam.setTeam("Australia");
+        mTeam.setRank(1);
 
         mPlayer = new MPlayer();
         mPlayer.setName("Smith");
@@ -162,9 +152,10 @@ public class MainActivity extends AppCompatActivity {
 
         mTeam = new MTeam();
         mTeam.setId(2);
+        mTeam.setRank(2);
         mTeam.setTeam("Bangladesh");
 
-        playerArrayList=new ArrayList<>();
+        playerArrayList = new ArrayList<>();
 
         mPlayer = new MPlayer();
         mPlayer.setName("Tamim");
@@ -190,9 +181,10 @@ public class MainActivity extends AppCompatActivity {
 
         mTeam = new MTeam();
         mTeam.setId(3);
+        mTeam.setRank(3);
         mTeam.setTeam("India");
 
-        playerArrayList=new ArrayList<>();
+        playerArrayList = new ArrayList<>();
 
         mPlayer = new MPlayer();
         mPlayer.setName("Kohli");

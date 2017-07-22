@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class TeamAdapter extends ArrayAdapter<MTeam> {
     private Activity activity;
     private ArrayList<MTeam> teamArrayList;
-//    public Resources res;
+    //    public Resources res;
     MTeam mTeam;
     LayoutInflater inflater;
     int rowLayout;
@@ -64,7 +64,9 @@ public class TeamAdapter extends ArrayAdapter<MTeam> {
         mTeam = teamArrayList.get(position);
 
         TextView team = (TextView) row.findViewById(R.id.TxtTeam);
+        TextView rank = (TextView) row.findViewById(R.id.txtRank);
         team.setText(mTeam.getTeam());
+        rank.setText(mTeam.getRank() + "");
 
 //        if (position == 0) {
 //
